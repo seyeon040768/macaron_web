@@ -7,6 +7,7 @@ import io
 import copy
 
 from calibration import point_to_image
+from utils import favicon
 
 default_value = {
     "rotate": (0.0, 0.0, 0.0),
@@ -15,14 +16,7 @@ default_value = {
     "color": "#00f000",
 }
 
-def image_to_base64(image_path):
-    with open(image_path, "rb") as image_file:
-        encoded_string = base64.b64encode(image_file.read()).decode()
-    return encoded_string
-
-favicon = image_to_base64("./favicon.png")
-favicon = f"data:image/png;base64,{favicon}"
-st.set_page_config(page_title="macaron", page_icon=favicon)
+st.set_page_config(page_title="macaron", page_icon=favicon.get_favicon())
 
 st.header("Calibration")
 
