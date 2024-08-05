@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import cv2
 from PIL import Image
+import base64
 import io
 import copy
 
@@ -13,6 +14,15 @@ default_value = {
     "fov": 50.0,
     "color": "#00f000",
 }
+
+def image_to_base64(image_path):
+    with open(image_path, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode()
+    return encoded_string
+
+favicon = image_to_base64("favicon.png")
+favicon = f"data:image/png;base64,{favicon}"
+st.set_page_config(page_title="macaron", page_icon=favicon)
 
 st.header("Calibration")
 
