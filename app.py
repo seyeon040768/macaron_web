@@ -20,7 +20,7 @@ def image_to_base64(image_path):
         encoded_string = base64.b64encode(image_file.read()).decode()
     return encoded_string
 
-favicon = image_to_base64("favicon.png")
+favicon = image_to_base64("./favicon.png")
 favicon = f"data:image/png;base64,{favicon}"
 st.set_page_config(page_title="macaron", page_icon=favicon)
 
