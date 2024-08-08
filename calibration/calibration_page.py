@@ -93,6 +93,8 @@ def get_calibration_page():
                 st.session_state.calib_pcd = calibration_utils.extract_pcd_from_bag(uploaded_file.read())
             else:
                 st.session_state.calib_pcd = np.genfromtxt(io.StringIO(uploaded_file.read().decode('utf-8')), delimiter=' ', dtype=float)
+        elif uploaded_file is None:
+            st.session_state.calib_pcd = None
 
     get_default_calibration_page()
     

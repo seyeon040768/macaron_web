@@ -30,7 +30,7 @@ if 'calib_color' not in st.session_state:
 if st.session_state.calib_image is not None:
     calibration_page.get_calibration_page()
 else:
-    uploaded_file = st.file_uploader(label="Upload a image or `.bag` file", type=["png", "jpg", "jpeg"])
+    uploaded_file = st.file_uploader(label="Upload a image.", type=["png", "jpg", "jpeg"])
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
         st.session_state.calib_image = np.array(image)
