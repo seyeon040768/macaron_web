@@ -50,7 +50,7 @@ def get_trans_matrix_lidar_to_camera3d(rotate_axis, translate, rotate):
 
     m_translate = get_translate_matrix(translate_x, translate_y, translate_z)
 
-    return m_x_rotate_axis @ m_y_rotate_axis @ m_z_rotate_axis @ m_translate @ m_y_rotate @ m_x_rotate
+    return m_x_rotate_axis @ m_y_rotate_axis @ m_z_rotate_axis @ m_translate @ m_y_rotate @ m_x_rotate @ m_z_rotate
 
 def get_trans_matrix_camera3d_to_image(img_shape: tuple, fov: float) -> np.ndarray:
     aspect = img_shape[1] / img_shape[0]
@@ -71,8 +71,8 @@ def get_expand_matrix(img_height: float) -> np.ndarray:
     trans_matrix[1, 1] = img_height / 2
     return trans_matrix
 
-def project_lidar_to_screen(point_clouds: np.ndarray, img: np.ndarray, rotate_axis: tuple, transition: tuple, rotate: tuple, fov: float) -> tuple:
-    m_lidar_to_camera3d = get_trans_matrix_lidar_to_camera3d(rotate_axis, transition, rotate)
+def project_lidar_to_screen(point_clouds: np.ndarray, img: np.ndarray, rotate_axis: tuple, translation: tuple, rotate: tuple, fov: float) -> tuple:
+    m_lidar_to_camera3d = get_trans_matrix_lidar_to_camera3d(rotate_axis, translation, rotate)
     
     m_camera3d_to_camera2d = get_trans_matrix_camera3d_to_image(img.shape, fov)
     m_expand_image = get_expand_matrix(img.shape[0])
